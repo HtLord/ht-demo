@@ -12,6 +12,9 @@ databaseChangeLog:
                   constraints:
                     primaryKey:  true
                     nullable:  false
+              - column:
+                  name: exchange_rate
+                  type: integer
   -  changeSet:
        id: 2025-02-13-weichen-2
        author:  weichen
@@ -22,3 +25,6 @@ databaseChangeLog:
                 -  column:
                      name:  name
                      value:  'Bitcoin'
+                - column:
+                    name: exchange_rate
+                    value: 5566
