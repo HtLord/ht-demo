@@ -15,9 +15,11 @@ Implementation Sequence
 
 QA
 ---
-- Resource return empty object even if database already has some data in develop mode?
-    - Major problem MAYBE your getter/setter is missing.
-    - Because lombok generate code not be triggered by `java ...`.
-    - Make IDE using `mvnw spring-boot:run`.
-    - Or other ways to force annotation process been run.
-    - Checking classes is looks like your expectation, or not.
+- Can not use IntelliJ - Spring Boot Run Configuration to execute run/debug caused by Lombok or MapStruct not working
+  - Make sure Lombok plugin is installed
+  - Make sure library has be added in Project Struct(File > Project Struct > Project Setting > Library)
+  - Make sure generated folders are properly setup which means 
+    - generated-sources has been added to source folders(File > Project Struct > Project Setting > Modules > Target)
+    - generated-test-sources has been added to test source folders(File > Project Struct > Project Setting > Modules > Target)
+- Can not compile because of annotation processor execute MapStruct before Lombok
+  - Make sure every detail of maven has been set. Check [here](https://github.com/mapstruct/mapstruct-examples/blob/main/mapstruct-lombok/pom.xml)
