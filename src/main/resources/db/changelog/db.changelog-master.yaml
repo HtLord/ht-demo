@@ -1,6 +1,6 @@
 databaseChangeLog:
   - changeSet:
-      id: 2025-02-13
+      id: 2025-02-13-weichen-1
       author: weichen
       changes:
         - createTable:
@@ -12,3 +12,13 @@ databaseChangeLog:
                   constraints:
                     primaryKey:  true
                     nullable:  false
+  -  changeSet:
+       id: 2025-02-13-weichen-2
+       author:  weichen
+       changes:
+         -  insert:
+              tableName:  coin
+              columns:
+                -  column:
+                     name:  name
+                     value:  'Bitcoin'
