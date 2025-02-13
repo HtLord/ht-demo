@@ -15,6 +15,9 @@ databaseChangeLog:
               - column:
                   name: exchange_rate
                   type: integer
+              - column:
+                  name: last_modified_date
+                  type: timestamp
   -  changeSet:
        id: 2025-02-13-weichen-2
        author:  weichen
@@ -28,3 +31,6 @@ databaseChangeLog:
                 - column:
                     name: exchange_rate
                     value: 5566
+                - column:
+                    name: last_modified_date
+                    value: 2025-01-01T00:00:00Z

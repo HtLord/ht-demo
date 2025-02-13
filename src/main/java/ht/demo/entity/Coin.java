@@ -8,6 +8,9 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import org.springframework.data.annotation.LastModifiedDate;
+
+import java.time.Instant;
 
 @Entity
 @Table
@@ -22,4 +25,6 @@ public class Coin {
     private String name;
     @Column
     private Integer exchangeRate;
+    @LastModifiedDate
+    private Instant lastModifiedDate;
 }
