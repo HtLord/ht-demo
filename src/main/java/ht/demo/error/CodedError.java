@@ -1,6 +1,8 @@
 package ht.demo.error;
 
-public interface Error {
+public interface CodedError {
+
+    String getCode();
     String getMessage();
     String getMessageFmt();
 }

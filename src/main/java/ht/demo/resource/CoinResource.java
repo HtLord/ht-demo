@@ -2,7 +2,7 @@ package ht.demo.resource;
 
 import ht.demo.dto.CoinPatchDto;
 import ht.demo.entity.Coin;
-import ht.demo.error.CoinError;
+import ht.demo.error.CoinCodedError;
 import ht.demo.mapper.CoinMapper;
 import ht.demo.repository.CoinRepository;
 import lombok.RequiredArgsConstructor;
@@ -44,7 +44,7 @@ public class CoinResource {
     ) throws BadRequestException {
         var coin =
             coinRepository.findById(dto.getName())
-                .orElseThrow(() -> new BadRequestException(CoinError.CE_0001.getMessage()));
+                .orElseThrow(() -> new BadRequestException(CoinCodedError.CE_0001.getMessage()));
         coinMapper.patch(coin, dto);
         coinRepository.save(coin);
 
@@ -58,7 +58,7 @@ public class CoinResource {
     ) throws BadRequestException {
         var coin =
             coinRepository.findById(name)
-                .orElseThrow(() -> new BadRequestException(CoinError.CE_0001.getMessage()));
+                .orElseThrow(() -> new BadRequestException(CoinCodedError.CE_0001.getMessage()));
         coinRepository.delete(coin);
     }
 }
