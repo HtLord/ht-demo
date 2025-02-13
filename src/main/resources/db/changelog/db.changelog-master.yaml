@@ -1,0 +1,14 @@
+databaseChangeLog:
+  - changeSet:
+      id: 2025-02-13
+      author: weichen
+      changes:
+        - createTable:
+            tableName: coin
+            columns:
+              - column:
+                  name: name
+                  type: VARCHAR(100)
+                  constraints:
+                    primaryKey:  true
+                    nullable:  false
