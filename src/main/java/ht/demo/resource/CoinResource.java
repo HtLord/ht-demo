@@ -8,8 +8,10 @@ import ht.demo.repository.CoinRepository;
 import lombok.RequiredArgsConstructor;
 import org.apache.coyote.BadRequestException;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -47,5 +49,16 @@ public class CoinResource {
         coinRepository.save(coin);
 
         return coin;
+    }
+
+    @DeleteMapping("/coins/{name}")
+    @Transactional
+    public void delete(
+        @PathVariable("name") String name
+    ) throws BadRequestException {
+        var coin =
+            coinRepository.findById(name)
+                .orElseThrow(() -> new BadRequestException(CoinError.CE_0001.getMessage()));
+        coinRepository.delete(coin);
     }
 }
