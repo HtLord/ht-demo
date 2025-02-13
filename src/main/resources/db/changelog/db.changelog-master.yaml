@@ -34,3 +34,36 @@ databaseChangeLog:
                 - column:
                     name: last_modified_date
                     value: 2025-01-01T00:00:00Z
+  - changeSet:
+      id: 2025-02-14-weichen-3
+      author: weichen
+      changes:
+        - createTable:
+            tableName: coini18n
+            columns:
+              - column:
+                  name: code
+                  type: varchar(100)
+              - column:
+                  name: value
+                  type: varchar(100)
+        - addPrimaryKey:
+            tableName: coini18n
+            columnNames: code,value
+            constraintName: pk_coini18n
+        - insert:
+            tableName: coini18n
+            columns:
+              - column:
+                  name: code
+                  value: BitCoin
+              - column:
+                  name: value
+                  value: ビットコイン
+              - column:
+                  name: value
+                  value: 비트코인
+              - column:
+                  name: value
+                  value: Биткойн
+
