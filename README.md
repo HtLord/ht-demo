@@ -11,6 +11,7 @@ Implementation Sequence
 4. Modify application properties to yaml
 5. Add simple entity, repository, and resource
 6. Add auditing
+7. Add mapstruct for implementing patch in easy way
 
 QA
 ---
