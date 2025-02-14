@@ -10,7 +10,7 @@ public class BpiDto {
 
     private String code;
     private String symbol;
-    private float rate;
+    private String rate;
     private String description;
     @JsonProperty("rate_float")
     private String rateFloat;

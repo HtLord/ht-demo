@@ -1,10 +1,12 @@
 package ht.demo.resource;
 
 import ht.demo.dto.CoinPatchDto;
+import ht.demo.dto.coin.desk.DataDto;
 import ht.demo.entity.Coin;
 import ht.demo.error.CoinCodedError;
 import ht.demo.mapper.CoinMapper;
 import ht.demo.repository.CoinRepository;
+import ht.demo.service.CoinDeskService;
 import lombok.RequiredArgsConstructor;
 import org.apache.coyote.BadRequestException;
 import org.springframework.transaction.annotation.Transactional;
@@ -24,6 +26,7 @@ public class CoinResource {
 
     private final CoinRepository coinRepository;
     private final CoinMapper coinMapper;
+    private final CoinDeskService coinDeskService;
 
     @PostMapping("/coins")
     public Coin createCoin(
@@ -61,4 +64,10 @@ public class CoinResource {
                 .orElseThrow(() -> new BadRequestException(CoinCodedError.CE_0001.getMessage()));
         coinRepository.delete(coin);
     }
+
+    @GetMapping("/coin-desk")
+    public DataDto proxy() {
+        return coinDeskService.fetch();
+    }
+
 }
