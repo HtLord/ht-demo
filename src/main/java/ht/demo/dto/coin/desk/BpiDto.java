@@ -13,5 +13,5 @@ public class BpiDto {
     private String rate;
     private String description;
     @JsonProperty("rate_float")
-    private String rateFloat;
+    private Float rateFloat;
 }

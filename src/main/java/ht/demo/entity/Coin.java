@@ -2,8 +2,9 @@ package ht.demo.entity;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
-import jakarta.persistence.EntityListeners;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -11,10 +12,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
-import org.springframework.data.annotation.LastModifiedDate;
-import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
-import java.time.Instant;
+import java.util.List;
 
 @Entity
 @Table
@@ -23,15 +22,18 @@ import java.time.Instant;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@EntityListeners(AuditingEntityListener.class)
 @ToString
 public class Coin {
 
     @Id
     @Column
-    private String name;
+    private String charName;
     @Column
-    private Integer exchangeRate;
-    @LastModifiedDate
-    private Instant lastModifiedDate;
+    private String disclaimer;
+
+    @OneToMany(
+        fetch = FetchType.LAZY,
+        orphanRemoval = true
+    )
+    private List<Bpi> bpis;
 }
