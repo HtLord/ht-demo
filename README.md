@@ -23,6 +23,8 @@ QA
     - generated-test-sources has been added to test source folders(File > Project Struct > Project Setting > Modules > Target)
 - Can not compile because of annotation processor execute MapStruct before Lombok
   - Make sure every detail of maven has been set. Check [here](https://github.com/mapstruct/mapstruct-examples/blob/main/mapstruct-lombok/pom.xml)
+- Breakpoint not working while call rest template to execute resource in IntelliJ
+  - Right click on breakpoint and select Thread in Suspend column
 
 Design Pattern
 ---
