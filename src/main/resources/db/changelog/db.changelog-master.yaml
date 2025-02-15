@@ -57,7 +57,7 @@ databaseChangeLog:
                   constraints:
                     nullable: false
               - column:
-                  name: charName
+                  name: char_name
                   type: varchar(255)
                   constraints:
                     nullable: false
@@ -69,7 +69,7 @@ databaseChangeLog:
         - addPrimaryKey:
             constraintName: pk_locale_coin_name
             tableName: locale_coin_name
-            columnNames: locale, charName
+            columnNames: locale, char_name
         - insert:
             tableName: locale_coin_name
             columns:
@@ -77,7 +77,7 @@ databaseChangeLog:
                   name: locale
                   value: 'zh_tw'
               - column:
-                  name: charName
+                  name: char_name
                   value: 'Bitcoin'
               - column:
                   name: name
