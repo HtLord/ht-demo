@@ -1,5 +1,6 @@
 package ht.demo.resource;
 
+import ht.demo.config.HtConfig;
 import ht.demo.dto.coin.desk.CoinDeskDto;
 import ht.demo.dto.coin.desk.CoinDeskDtoCollection;
 import ht.demo.dto.coin.desk.CoinDeskTimeDto;
@@ -27,6 +28,9 @@ public class IntTestCoinResources {
     private int port;
     @Autowired
     private TestRestTemplate restTemplate;
+    @Autowired
+    private HtConfig htConfig;
+
     private Instant now = Instant.now();
 
     CoinDeskDtoCollection buildFakeData() {
