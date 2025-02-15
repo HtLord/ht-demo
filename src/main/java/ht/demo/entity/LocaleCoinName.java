@@ -16,4 +16,5 @@ public class LocaleCoinName {
 
     @EmbeddedId
     private LocaleCoinNameId id;
+    public String name;
 }

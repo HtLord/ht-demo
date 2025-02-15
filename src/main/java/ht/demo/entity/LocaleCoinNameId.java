@@ -12,5 +12,5 @@ import java.io.Serializable;
 public class LocaleCoinNameId implements Serializable {
 
     public String locale;
-    public String name;
+    public String charName;
 }
