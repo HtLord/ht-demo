@@ -39,7 +39,7 @@ public class ITLocaleCoinNameResource {
     private final String LocaleCoinNameName = "test-name";
 
     @BeforeEach
-    void init() {
+    void mockCoin() {
         Mockito.doReturn(
                 Optional.of(
                     Coin.builder()
@@ -178,4 +178,71 @@ public class ITLocaleCoinNameResource {
         );
     }
 
+    @Test
+    void delete() {
+        this.restTemplate
+            .exchange(
+                "http://localhost:" + port + "/api/locale-coin-name",
+                HttpMethod.POST,
+                new HttpEntity<>(
+                    LocaleCoinName.builder()
+                        .id(
+                            LocaleCoinNameId.builder()
+                                .locale(LocaleCoinLocale)
+                                .charName(LocaleCoinCharName)
+                                .build()
+                        )
+                        .name(LocaleCoinNameName)
+                        .build()
+                ),
+                LocaleCoinName.class
+            );
+        this.restTemplate
+            .exchange(
+                "http://localhost:" + port + "/api/locale-coin-name",
+                HttpMethod.POST,
+                new HttpEntity<>(
+                    LocaleCoinName.builder()
+                        .id(
+                            LocaleCoinNameId.builder()
+                                .locale("another-locale")
+                                .charName(LocaleCoinCharName)
+                                .build()
+                        )
+                        .name(LocaleCoinNameName)
+                        .build()
+                ),
+                LocaleCoinName.class
+            );
+        this.restTemplate
+            .exchange(
+                "http://localhost:" + port + "/api/locale-coin-name",
+                HttpMethod.DELETE,
+                new HttpEntity<>(
+                    LocaleCoinName.builder()
+                        .id(
+                            LocaleCoinNameId.builder()
+                                .locale(LocaleCoinLocale)
+                                .charName(LocaleCoinCharName)
+                                .build()
+                        )
+                        .name(LocaleCoinNameName)
+                        .build()
+                ),
+                LocaleCoinName.class
+            );
+        var data =
+            this.restTemplate
+                .exchange(
+                    "http://localhost:" + port + "/api/locale-coin-name",
+                    HttpMethod.GET,
+                    null,
+                    new ParameterizedTypeReference<List<LocaleCoinName>>() {
+                    }
+                );
+        Assertions.assertEquals(
+            1,
+            data.getBody().size()
+        );
+    }
 }

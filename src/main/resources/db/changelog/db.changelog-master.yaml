@@ -70,18 +70,3 @@ databaseChangeLog:
             constraintName: pk_locale_coin_name
             tableName: locale_coin_name
             columnNames: locale, char_name
-        - insert:
-            tableName: locale_coin_name
-            columns:
-              - column:
-                  name: locale
-                  value: 'zh_tw'
-              - column:
-                  name: char_name
-                  value: 'Bitcoin'
-              - column:
-                  name: name
-                  value: '比特幣'
-
-
-
