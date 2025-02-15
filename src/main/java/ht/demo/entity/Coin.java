@@ -1,7 +1,9 @@
 package ht.demo.entity;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EntityListeners;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
@@ -12,7 +14,10 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
+import org.springframework.data.annotation.LastModifiedDate;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
+import java.time.Instant;
 import java.util.List;
 
 @Entity
@@ -23,6 +28,7 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @ToString
+@EntityListeners(AuditingEntityListener.class)
 public class Coin {
 
     @Id
@@ -31,10 +37,14 @@ public class Coin {
     @Column
     private String disclaimer;
 
+    @LastModifiedDate
+    private Instant lastModifiedDate;
+
     @OneToMany(
+        cascade = { CascadeType.ALL },
         fetch = FetchType.LAZY,
         orphanRemoval = true,
-        mappedBy = "coin"
+        mappedBy = "id.charName"
     )
     private List<Bpi> bpis;
 }

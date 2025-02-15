@@ -2,6 +2,8 @@ package ht.demo.mapper;
 
 import ht.demo.dto.coin.NeoCoinDeskDto;
 import ht.demo.dto.coin.desk.CoinDeskDto;
+import ht.demo.entity.Coin;
+import org.mapstruct.Context;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.MappingConstants;
@@ -18,7 +20,8 @@ import java.time.format.DateTimeFormatter;
 @Mapper(
     componentModel = MappingConstants.ComponentModel.SPRING,
     nullValueMappingStrategy = NullValueMappingStrategy.RETURN_DEFAULT,
-    mappingInheritanceStrategy = MappingInheritanceStrategy.AUTO_INHERIT_ALL_FROM_CONFIG
+    mappingInheritanceStrategy = MappingInheritanceStrategy.AUTO_INHERIT_ALL_FROM_CONFIG,
+    uses = {BpiMapper.class}
 )
 public interface CoinMapper {
 
@@ -39,4 +42,8 @@ public interface CoinMapper {
             .withZone(ZoneId.from(ZoneOffset.UTC))
             .format(time);
     }
+
+    @Mapping(target = "bpis", source = "bpi")
+    Coin toEntity(CoinDeskDto dto, @Context String charName);
+
 }

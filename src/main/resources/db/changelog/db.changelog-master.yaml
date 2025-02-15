@@ -15,9 +15,20 @@ databaseChangeLog:
               - column:
                   name: disclaimer
                   type: varchar(255)
+              - column:
+                  name: last_modified_date
+                  type: timestamp
         - createTable:
             tableName: bpi
             columns:
+              - column:
+                  name: char_name
+                  type: varchar(100)
+                  constraints:
+                    referencedTableName: coin
+                    referencedColumnNames: char_name
+                    foreignKeyName: coin_char_name
+                    nullable: false
               - column:
                   name: code
                   type: varchar(10)
@@ -32,18 +43,10 @@ databaseChangeLog:
               - column:
                   name: description
                   type: varchar(255)
-              - column:
-                  name: char_name
-                  type: varchar(100)
-                  constraints:
-                    referencedTableName: coin
-                    referencedColumnNames: char_name
-                    foreignKeyName: coin_char_name
-                    nullable: false
         - addPrimaryKey:
             constraintName: pk_bpi
             tableName: bpi
-            columnNames: code, char_name
+            columnNames: char_name, code
   - changeSet:
       id: create-locale-coin-name-table
       author: weichen
