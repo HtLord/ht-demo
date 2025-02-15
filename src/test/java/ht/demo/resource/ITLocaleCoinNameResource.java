@@ -14,6 +14,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.web.client.TestRestTemplate;
 import org.springframework.boot.test.web.server.LocalServerPort;
 import org.springframework.core.ParameterizedTypeReference;
+import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpMethod;
 import org.springframework.test.context.bean.override.mockito.MockitoSpyBean;
 
@@ -54,17 +55,20 @@ public class ITLocaleCoinNameResource {
     void create() {
         var data =
             this.restTemplate
-                .postForEntity(
+                .exchange(
                     "http://localhost:" + port + "/api/locale-coin-name",
-                    LocaleCoinName.builder()
-                        .id(
-                            LocaleCoinNameId.builder()
-                                .locale(LocaleCoinLocale)
-                                .charName(LocaleCoinCharName)
-                                .build()
-                        )
-                        .name(LocaleCoinNameName)
-                        .build(),
+                    HttpMethod.POST,
+                    new HttpEntity<>(
+                        LocaleCoinName.builder()
+                            .id(
+                                LocaleCoinNameId.builder()
+                                    .locale(LocaleCoinLocale)
+                                    .charName(LocaleCoinCharName)
+                                    .build()
+                            )
+                            .name(LocaleCoinNameName)
+                            .build()
+                    ),
                     LocaleCoinName.class
                 );
         Assertions.assertEquals(
@@ -122,4 +126,56 @@ public class ITLocaleCoinNameResource {
             localeCoin.getName()
         );
     }
+
+    @Test
+    void put() {
+        this.restTemplate
+            .exchange(
+                "http://localhost:" + port + "/api/locale-coin-name",
+                HttpMethod.POST,
+                new HttpEntity<>(
+                    LocaleCoinName.builder()
+                        .id(
+                            LocaleCoinNameId.builder()
+                                .locale(LocaleCoinLocale)
+                                .charName(LocaleCoinCharName)
+                                .build()
+                        )
+                        .name(LocaleCoinNameName)
+                        .build()
+                ),
+                LocaleCoinName.class
+            );
+        var data =
+            this.restTemplate
+                .exchange(
+                    "http://localhost:" + port + "/api/locale-coin-name",
+                    HttpMethod.PUT,
+                    new HttpEntity<>(
+                        LocaleCoinName.builder()
+                            .id(
+                                LocaleCoinNameId.builder()
+                                    .locale(LocaleCoinLocale)
+                                    .charName(LocaleCoinCharName)
+                                    .build()
+                            )
+                            .name("hello-world")
+                            .build()
+                    ),
+                    LocaleCoinName.class
+                );
+        Assertions.assertEquals(
+            LocaleCoinCharName,
+            data.getBody().getId().getCharName()
+        );
+        Assertions.assertEquals(
+            LocaleCoinLocale,
+            data.getBody().getId().getLocale()
+        );
+        Assertions.assertEquals(
+            "hello-world",
+            data.getBody().getName()
+        );
+    }
+
 }

@@ -7,7 +7,7 @@ databaseChangeLog:
             tableName: coin
             columns:
               - column:
-                  name: charName
+                  name: char_name
                   type: varchar(100)
                   constraints:
                     primaryKey: true
@@ -33,17 +33,17 @@ databaseChangeLog:
                   name: description
                   type: varchar(255)
               - column:
-                  name: charName
+                  name: char_name
                   type: varchar(100)
                   constraints:
                     referencedTableName: coin
-                    referencedColumnNames: charName
-                    foreignKeyName: coinCharName
+                    referencedColumnNames: char_name
+                    foreignKeyName: coin_char_name
                     nullable: false
         - addPrimaryKey:
             constraintName: pk_bpi
             tableName: bpi
-            columnNames: code, charName
+            columnNames: code, char_name
   - changeSet:
       id: create-locale-coin-name-table
       author: weichen
