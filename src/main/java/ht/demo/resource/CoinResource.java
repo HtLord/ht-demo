@@ -4,9 +4,11 @@ import ht.demo.dto.CoinPatchDto;
 import ht.demo.dto.coin.NeoCoinDeskDto;
 import ht.demo.dto.coin.desk.DataDto;
 import ht.demo.entity.Coin;
+import ht.demo.entity.LocaleCoinName;
 import ht.demo.error.CoinCodedError;
 import ht.demo.mapper.CoinMapper;
 import ht.demo.repository.CoinRepository;
+import ht.demo.repository.LocaleCoinNameRepository;
 import ht.demo.service.CoinDeskService;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
@@ -30,6 +32,7 @@ public class CoinResource {
     private final CoinRepository coinRepository;
     private final CoinMapper coinMapper;
     private final CoinDeskService coinDeskService;
+    private final LocaleCoinNameRepository localeCoinNameRepository;
 
     @PostMapping("/coins")
     public Coin createCoin(
@@ -80,6 +83,11 @@ public class CoinResource {
             .stream()
             .map(coinMapper::convert)
             .toList();
+    }
+
+    @GetMapping("/locale-coin-name")
+    public List<LocaleCoinName> fetchLocaleCoinName() {
+        return localeCoinNameRepository.findAll();
     }
 
 }

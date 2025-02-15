@@ -45,11 +45,11 @@ databaseChangeLog:
             tableName: bpi
             columnNames: code, charName
   - changeSet:
-      id: create-local-coin-name-table
+      id: create-locale-coin-name-table
       author: weichen
       changes:
         - createTable:
-            tableName: localCoinName
+            tableName: locale_coin_name
             columns:
               - column:
                   name: locale
@@ -62,11 +62,11 @@ databaseChangeLog:
                   constraints:
                     nullable: false
         - addPrimaryKey:
-            constraintName: pk_local_coin_name
-            tableName: localCoinName
+            constraintName: pk_locale_coin_name
+            tableName: locale_coin_name
             columnNames: locale, name
         - insert:
-            tableName: localCoinName
+            tableName: locale_coin_name
             columns:
               - column:
                   name: locale
