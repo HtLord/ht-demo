@@ -6,7 +6,7 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class BpiDto {
+public class CoinDeskBpiDto {
 
     private String code;
     private String symbol;

@@ -1,6 +1,6 @@
 package ht.demo.mapper;
 
-import ht.demo.dto.coin.desk.BpiDto;
+import ht.demo.dto.coin.desk.CoinDeskBpiDto;
 import ht.demo.entity.Bpi;
 import ht.demo.entity.BpiId;
 import org.mapstruct.Context;
@@ -21,7 +21,7 @@ import java.util.stream.Collectors;
 )
 public interface BpiMapper {
 
-    default List<Bpi> mapBpiMapToList(Map<String, BpiDto> bpiMap, @Context String chartName) {
+    default List<Bpi> mapBpiMapToList(Map<String, CoinDeskBpiDto> bpiMap, @Context String chartName) {
         if (bpiMap == null) return null;
         return bpiMap.values()
             .stream()
@@ -43,5 +43,5 @@ public interface BpiMapper {
 
     @Mapping(source = "rateFloat", target = "rate")
     @Mapping(target = "coin", ignore = true)
-    Bpi toEntity(BpiDto dto, @Context String chartName);
+    Bpi toEntity(CoinDeskBpiDto dto, @Context String chartName);
 }

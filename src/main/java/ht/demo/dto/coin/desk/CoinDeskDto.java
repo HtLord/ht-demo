@@ -14,5 +14,5 @@ public class CoinDeskDto {
     private CoinDeskTimeDto time;
     private String disclaimer;
     private String charName;
-    private Map<String, BpiDto> bpi;
+    private Map<String, CoinDeskBpiDto> bpi;
 }

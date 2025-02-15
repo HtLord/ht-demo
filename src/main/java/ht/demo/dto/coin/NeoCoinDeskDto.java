@@ -1,6 +1,6 @@
 package ht.demo.dto.coin;
 
-import ht.demo.dto.coin.desk.BpiDto;
+import ht.demo.dto.coin.desk.CoinDeskBpiDto;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -14,5 +14,5 @@ public class NeoCoinDeskDto {
     private String disclaimer;
     private String charName;
     private String localeName;
-    private Map<String, BpiDto> bpi;
+    private Map<String, CoinDeskBpiDto> bpi;
 }
