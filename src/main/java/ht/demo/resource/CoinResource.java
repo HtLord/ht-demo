@@ -2,7 +2,7 @@ package ht.demo.resource;
 
 import ht.demo.dto.CoinPatchDto;
 import ht.demo.dto.coin.NeoCoinDeskDto;
-import ht.demo.dto.coin.desk.DataDto;
+import ht.demo.dto.coin.desk.CoinDeskDtoCollection;
 import ht.demo.entity.Coin;
 import ht.demo.entity.LocaleCoinName;
 import ht.demo.error.CoinCodedError;
@@ -69,7 +69,7 @@ public class CoinResource {
     }
 
     @GetMapping("/coin-desk:proxy")
-    public DataDto proxy() {
+    public CoinDeskDtoCollection proxy() {
         return coinDeskService.fetch();
     }
 
@@ -78,7 +78,7 @@ public class CoinResource {
         return Optional.ofNullable(
                 coinDeskService.fetch()
             )
-            .map(DataDto::getData)
+            .map(CoinDeskDtoCollection::getData)
             .orElse(new ArrayList<>())
             .stream()
             .map(coinMapper::convert)
