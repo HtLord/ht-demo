@@ -45,9 +45,9 @@ public class CoinResource {
     public Coin patchCoin(
         @RequestBody CoinPatchDto dto
     ) throws BadRequestException {
-        var coin =
-            coinRepository.findById(dto.getName())
-                .orElseThrow(() -> new BadRequestException(CoinCodedError.CE_0001.getMessage()));
+        Coin coin = null;
+//            coinRepository.findById(dto.getName())
+//                .orElseThrow(() -> new BadRequestException(CoinCodedError.CE_0001.getMessage()));
         coinMapper.patch(coin, dto);
         coinRepository.save(coin);
 

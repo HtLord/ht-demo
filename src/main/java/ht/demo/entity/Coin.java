@@ -33,7 +33,8 @@ public class Coin {
 
     @OneToMany(
         fetch = FetchType.LAZY,
-        orphanRemoval = true
+        orphanRemoval = true,
+        mappedBy = "coin"
     )
     private List<Bpi> bpis;
 }

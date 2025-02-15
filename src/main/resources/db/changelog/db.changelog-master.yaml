@@ -1,36 +1,47 @@
 databaseChangeLog:
   - changeSet:
-      id: 2025-02-13-weichen-1
+      id: create-coin-and-bpi-table
       author: weichen
       changes:
         - createTable:
             tableName: coin
             columns:
               - column:
-                  name: name
-                  type: VARCHAR(100)
+                  name: charName
+                  type: varchar(100)
                   constraints:
-                    primaryKey:  true
-                    nullable:  false
+                    primaryKey: true
+                    nullable: false
               - column:
-                  name: exchange_rate
-                  type: integer
+                  name: disclaimer
+                  type: varchar(255)
+        - createTable:
+            tableName: bpi
+            columns:
               - column:
-                  name: last_modified_date
-                  type: timestamp
-  -  changeSet:
-       id: 2025-02-13-weichen-2
-       author:  weichen
-       changes:
-         -  insert:
-              tableName:  coin
-              columns:
-                -  column:
-                     name:  name
-                     value:  'Bitcoin'
-                - column:
-                    name: exchange_rate
-                    value: 5566
-                - column:
-                    name: last_modified_date
-                    value: 2025-01-01T00:00:00Z
+                  name: code
+                  type: varchar(10)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: symbol
+                  type: varchar(10)
+              - column:
+                  name: rate
+                  type: float
+              - column:
+                  name: description
+                  type: varchar(255)
+              - column:
+                  name: charName
+                  type: varchar(100)
+                  constraints:
+                    referencedTableName: coin
+                    referencedColumnNames: charName
+                    foreignKeyName: coinCharName
+                    nullable: false
+        - addPrimaryKey:
+            constraintName: pk_bpi
+            tableName: bpi
+            columnNames: code, charName
+
