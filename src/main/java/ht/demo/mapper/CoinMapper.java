@@ -1,5 +1,6 @@
 package ht.demo.mapper;
 
+import ht.demo.dto.coin.CoinDto;
 import ht.demo.dto.coin.NeoCoinDeskDto;
 import ht.demo.dto.coin.desk.CoinDeskDto;
 import ht.demo.entity.Coin;
@@ -46,4 +47,10 @@ public interface CoinMapper {
     @Mapping(target = "bpis", source = "bpi")
     Coin toEntity(CoinDeskDto dto, @Context String charName);
 
+    @Mapping(
+        target = "time",
+        source = "lastModifiedDate",
+        qualifiedByName = "convertCoinDeskTimeToNeoCoinDeskTime"
+    )
+    CoinDto toCoinDto(Coin source);
 }

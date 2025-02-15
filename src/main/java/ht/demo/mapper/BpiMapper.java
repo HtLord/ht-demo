@@ -1,5 +1,6 @@
 package ht.demo.mapper;
 
+import ht.demo.dto.coin.BpiDto;
 import ht.demo.dto.coin.desk.CoinDeskBpiDto;
 import ht.demo.entity.Bpi;
 import ht.demo.entity.BpiId;
@@ -10,8 +11,10 @@ import org.mapstruct.MappingConstants;
 import org.mapstruct.MappingInheritanceStrategy;
 import org.mapstruct.NullValueMappingStrategy;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Mapper(
@@ -21,9 +24,10 @@ import java.util.stream.Collectors;
 )
 public interface BpiMapper {
 
-    default List<Bpi> mapBpiMapToList(Map<String, CoinDeskBpiDto> bpiMap, @Context String chartName) {
-        if (bpiMap == null) return null;
-        return bpiMap.values()
+    default List<Bpi> mapBpiMapToList(Map<String, CoinDeskBpiDto> source, @Context String chartName) {
+        return Optional.ofNullable(source)
+            .orElse(new HashMap<>())
+            .values()
             .stream()
             .map(x ->
                 Bpi.builder()
@@ -41,7 +45,9 @@ public interface BpiMapper {
             .collect(Collectors.toList());
     }
 
-    @Mapping(source = "rateFloat", target = "rate")
-    @Mapping(target = "coin", ignore = true)
-    Bpi toEntity(CoinDeskBpiDto dto, @Context String chartName);
+    @Mapping(target = "rate", source = "rateFloat")
+    Bpi toEntity(CoinDeskBpiDto source, @Context String chartName);
+
+    @Mapping(target = "code", source = "id.code")
+    BpiDto toBpiDto(Bpi source);
 }
