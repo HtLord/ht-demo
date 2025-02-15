@@ -13,5 +13,6 @@ public class NeoCoinDeskDto {
     private String time;
     private String disclaimer;
     private String charName;
+    private String localeName;
     private Map<String, BpiDto> bpi;
 }

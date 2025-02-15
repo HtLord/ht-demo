@@ -44,4 +44,36 @@ databaseChangeLog:
             constraintName: pk_bpi
             tableName: bpi
             columnNames: code, charName
+  - changeSet:
+      id: create-local-coin-name-table
+      author: weichen
+      changes:
+        - createTable:
+            tableName: localCoinName
+            columns:
+              - column:
+                  name: locale
+                  type: varchar(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: name
+                  type: varchar(255)
+                  constraints:
+                    nullable: false
+        - addPrimaryKey:
+            constraintName: pk_local_coin_name
+            tableName: localCoinName
+            columnNames: locale, name
+        - insert:
+            tableName: localCoinName
+            columns:
+              - column:
+                  name: locale
+                  value: 'zh_tw'
+              - column:
+                  name: name
+                  value: '比特幣'
+
+
 
