@@ -20,7 +20,7 @@ import java.util.Optional;
 import java.util.stream.Stream;
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
-public class IntTestCoinResources {
+public class ITCoinDeskResource {
 
     @MockitoBean
     private CoinDeskService coinDeskService;
