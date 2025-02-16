@@ -38,6 +38,16 @@ Development Cli
   ```bash
   docker run -p 8080:8080 -e JVM_OPTIONS='-Dht.service.data.host=https://f648-61-231-134-232.ngrok-free.app' ht-demo:latest
   ```
+- Setup mock data server
+  ```bash
+  cd ./mock.server
+  npm install
+  ```
+- Run mock data server
+  ```bash
+  cd ./mock.server
+  node ./index.js
+  ```
 
 Implementation Sequence
 ---
