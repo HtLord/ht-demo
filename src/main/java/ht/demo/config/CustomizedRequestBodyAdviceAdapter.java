@@ -15,7 +15,7 @@ import java.lang.reflect.Type;
 @ControllerAdvice
 @Slf4j
 @RequiredArgsConstructor
-public class CustomizedLogInterceptor extends RequestBodyAdviceAdapter {
+public class CustomizedRequestBodyAdviceAdapter extends RequestBodyAdviceAdapter {
 
     private final ObjectMapper objectMapper;
 
