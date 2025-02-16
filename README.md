@@ -1,3 +1,10 @@
+Features
+---
+- AOP
+  - Support req/res logging
+  - Support coded exception
+
+
 Preparing
 ---
 - Setup Lombok
