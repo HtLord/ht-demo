@@ -10,6 +10,21 @@ Preparing
 - Setup Lombok
     - setup details on https://projectlombok.org/setup/maven
 
+Development Cli
+---
+- Build Maven
+  ```bash
+  ./mvnw -Dmaven.test.skip=true package
+  ```
+- Build docker image
+  ```bash
+  docker build --no-cache -t ht-demo:latest -f Dockerfile .
+  ```
+- Run docker image
+  ```bash
+  docker run -p 8080:8080 -e JVM_OPTIONS='-Dht.service.data.host=https://f648-61-231-134-232.ngrok-free.app' ht-demo:latest
+  ```
+
 Implementation Sequence
 ---
 1. Init project with spring initializer
