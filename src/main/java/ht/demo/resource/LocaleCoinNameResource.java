@@ -2,13 +2,13 @@ package ht.demo.resource;
 
 import ht.demo.entity.LocaleCoinName;
 import ht.demo.entity.LocaleCoinNameId;
-import ht.demo.error.BadRequestWithErrorCodeException;
 import ht.demo.error.LocaleCoinNameCodedError;
 import ht.demo.repository.LocaleCoinNameRepository;
 import ht.demo.service.CoinService;
 import ht.demo.service.LocaleCoinNameService;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
+import org.apache.coyote.BadRequestException;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -30,7 +30,7 @@ public class LocaleCoinNameResource {
     @PostMapping("/api/locale-coin-name")
     public LocaleCoinName create(
         @NonNull @RequestBody LocaleCoinName localeCoinName
-    ) throws BadRequestWithErrorCodeException {
+    ) throws BadRequestException {
         coinService.exist(
             Optional.of(
                 localeCoinName
@@ -52,7 +52,7 @@ public class LocaleCoinNameResource {
     @PutMapping("/api/locale-coin-name")
     public LocaleCoinName put(
         @NonNull @RequestBody LocaleCoinName localeCoinName
-    ) throws BadRequestWithErrorCodeException {
+    ) throws BadRequestException {
         localeCoinNameService.exist(localeCoinName);
         return localeCoinNameService.put(localeCoinName);
     }
@@ -60,15 +60,13 @@ public class LocaleCoinNameResource {
     @DeleteMapping("/api/locale-coin-name")
     public void delete(
         @NonNull @RequestBody LocaleCoinName localeCoinName
-    ) throws BadRequestWithErrorCodeException {
+    ) throws BadRequestException {
         var data =
             localeCoinNameRepository.findById(
                 localeCoinName.getId()
             );
         if (data.isEmpty()) {
-            throw BadRequestWithErrorCodeException.builder()
-                .codedError(LocaleCoinNameCodedError.LCN_0001)
-                .build();
+            throw LocaleCoinNameCodedError.LCN_0001.generateBadRequestException();
         }
         localeCoinNameRepository.delete(data.get());
     }

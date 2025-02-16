@@ -3,10 +3,10 @@ package ht.demo.service;
 import ht.demo.dto.locale.coin.CharName;
 import ht.demo.entity.LocaleCoinName;
 import ht.demo.entity.LocaleCoinNameId;
-import ht.demo.error.BadRequestWithErrorCodeException;
 import ht.demo.error.LocaleCoinNameCodedError;
 import ht.demo.repository.LocaleCoinNameRepository;
 import lombok.RequiredArgsConstructor;
+import org.apache.coyote.BadRequestException;
 import org.springframework.stereotype.Service;
 
 import java.util.Map;
@@ -21,13 +21,11 @@ public class LocaleCoinNameService {
 
     public void exist(
         LocaleCoinName localeCoinName
-    ) throws BadRequestWithErrorCodeException {
+    ) throws BadRequestException {
         if (!localeCoinNameRepository.existsById(
                 localeCoinName.getId()
         )) {
-            throw BadRequestWithErrorCodeException.builder()
-                .codedError(LocaleCoinNameCodedError.LCN_0001)
-                .build();
+            throw LocaleCoinNameCodedError.LCN_0001.generateBadRequestException();
         }
     }
 

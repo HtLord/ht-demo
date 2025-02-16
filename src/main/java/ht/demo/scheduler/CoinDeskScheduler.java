@@ -1,6 +1,5 @@
 package ht.demo.scheduler;
 
-import ht.demo.error.BadRequestWithErrorCodeException;
 import ht.demo.mapper.CoinMapper;
 import ht.demo.service.CoinDeskService;
 import ht.demo.service.CoinService;
@@ -17,7 +16,7 @@ public class CoinDeskScheduler {
     private final CoinService coinService;
 
     @Scheduled(fixedRate = 100000)
-    public void syncWithCoinDesk() throws BadRequestWithErrorCodeException {
+    public void syncWithCoinDesk() {
         var data =
             coinDeskService.fetch();
         var entities =
