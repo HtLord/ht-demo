@@ -4,7 +4,7 @@ Features
   - Support req/res logging
   - Support coded exception
 - OpenAPI v3
-  - Support swagger ui at `/swagger-ui.html` 
+  - Support swagger ui at `http://locahost:8080/swagger-ui.html` 
 - i18n
   - Support reply data with variant locale from request 
 - Design Pattern
