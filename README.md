@@ -30,3 +30,4 @@ Improvement Plan
 ---
 - Split liquibase by context for splitting mock data from database
 - Create seperated application to be able on different environment setups like dev, qa, staging, and prod.
+- Integrate with tracing system like `Jaeger` for making trace request easier.
