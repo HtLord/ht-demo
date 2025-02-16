@@ -30,18 +30,6 @@ Preparing
 
 Development Cli
 ---
-- Build Maven
-  ```bash
-  ./mvnw -Dmaven.test.skip=true package
-  ```
-- Build docker image
-  ```bash
-  docker build --no-cache -t ht-demo:latest -f Dockerfile .
-  ```
-- Run docker image
-  ```bash
-  docker run -p 8080:8080 -e JVM_OPTIONS='-Dht.service.data.host=https://f648-61-231-134-232.ngrok-free.app' ht-demo:latest
-  ```
 - Setup mock data server
   ```bash
   cd ./mock.server
@@ -55,6 +43,23 @@ Development Cli
 - Run mock data server
   ```bash
   docker run -p 3000:3000 ht-mock
+  ```
+- Run ngrok for publishing mock data server
+  ```bash
+  ngrok http 3000
+  ```
+- Build Maven
+  ```bash
+  ./mvnw -Dmaven.test.skip=true package
+  ```
+- Build docker image
+  ```bash
+  docker build --no-cache -t ht-demo:latest -f Dockerfile .
+  ```
+- Run docker image
+  ```bash
+  # ht.service.data.host should modify according ngrok respond url
+  docker run -p 8080:8080 -e JVM_OPTIONS='-Dht.service.data.host=https://f648-61-231-134-232.ngrok-free.app' ht-demo:latest
   ```
 
 QA
