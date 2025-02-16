@@ -3,6 +3,16 @@ Features
 - AOP
   - Support req/res logging
   - Support coded exception
+- OpenAPI v3
+  - X
+- i18n
+  - Support reply data with variant locale from request 
+- Design Pattern
+  - X
+- Containerize
+  - Support docker build
+- Cryptology
+  - X
 
 
 Preparing
