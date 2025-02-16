@@ -31,4 +31,4 @@ build/
 
 ### VS Code ###
 .vscode/
-mock.server/.node_modules/**
+mock.server/node_modules/**
