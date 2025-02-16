@@ -8,7 +8,11 @@ Features
 - i18n
   - Support reply data with variant locale from request 
 - Design Pattern
-  - Support strategy design pattern
+  - Support strategy behavior pattern
+  - Support fsm (a.k.a state behavior pattern)
+    - Implement with singleton creational pattern
+    - Implement with factory method creational pattern
+  - Lots of usage of structural pattern with MapStruct 
 - Containerize
   - Support docker build
 - Cryptology
