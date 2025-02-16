@@ -47,7 +47,7 @@ public interface CoinMapper {
     }
 
     @Mapping(target = "bpis", source = "bpi")
-    Coin toEntity(CoinDeskDto dto, @Context String charName);
+    Coin toEntity(CoinDeskDto source, @Context String charName);
 
     @Mapping(
         target = "time",
