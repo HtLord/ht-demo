@@ -47,10 +47,14 @@ Development Cli
   cd ./mock.server
   npm install
   ```
-- Run mock data server
+- Build mock data server
   ```bash
   cd ./mock.server
-  node ./index.js
+  docker build -t ht-mock -f Dockerfile .
+  ```
+- Run mock data server
+  ```bash
+  docker run -p 3000:3000 ht-mock
   ```
 
 QA

@@ -13,3 +13,5 @@ app.get('/', function (req, res) {
 renewBpiSchedule(state)
 
 app.listen(3000)
+
+console.log('mock data server start at :3000')
