@@ -1,0 +1,21 @@
+name: "Trigger application build process by tag"
+
+on:
+  push:
+    tags:
+      - '[0-9]+.[0-9]+.[0-9]+'
+jobs:
+  Setup:
+    runs-on: ubuntu-latest
+    steps:
+        - uses: actions/checkout@v4
+        - uses: actions/setup-java@v4
+          with:
+            java-version: '17'
+            distribution: 'corretto'
+        - name: Build-Jar
+          run: ./mvnw -Dmaven.test.skip=true package
+        - name: Containerize
+          run: docker build --no-cache -t ht-demo:latest -f Dockerfile .
+
+
