@@ -15,7 +15,7 @@ public class CoinDeskScheduler {
     private final CoinDeskService coinDeskService;
     private final CoinService coinService;
 
-    @Scheduled(fixedRate = 100000)
+    @Scheduled(fixedRate = 10000)
     public void syncWithCoinDesk() {
         var data =
             coinDeskService.fetch();
