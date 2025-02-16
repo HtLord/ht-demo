@@ -17,12 +17,16 @@ Features
   - Support docker build
 - Cryptology
   - Support BCrypt hash and validation
+- Mock Server
+  - Data will automatically add 1 for every 10sec
 
 
 Preparing
 ---
-- Setup Lombok
-    - setup details on https://projectlombok.org/setup/maven
+- Setup nodejs >= v18
+- Setup java == corretto.18
+- Setup docker tool
+- Setup project structure for making annotation process working well
 
 Development Cli
 ---
@@ -49,16 +53,6 @@ Development Cli
   node ./index.js
   ```
 
-Implementation Sequence
----
-1. Init project with spring initializer
-2. Setup h2 database with properties
-3. Setup liquibase and database change logs
-4. Modify application properties to yaml
-5. Add simple entity, repository, and resource
-6. Add auditing
-7. Add mapstruct for implementing patch in easy way
-
 QA
 ---
 - Can not use IntelliJ - Spring Boot Run Configuration to execute run/debug caused by Lombok or MapStruct not working
@@ -77,3 +71,4 @@ Improvement Plan
 - Split liquibase by context for splitting mock data from database
 - Create seperated application to be able on different environment setups like dev, qa, staging, and prod.
 - Integrate with tracing system like `Jaeger` for making trace request easier.
+- Migrate reactive programming for large throughput
