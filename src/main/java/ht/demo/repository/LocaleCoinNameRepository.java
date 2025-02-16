@@ -5,8 +5,10 @@ import ht.demo.entity.LocaleCoinNameId;
 import org.springframework.data.repository.ListCrudRepository;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
 @Repository
 public interface LocaleCoinNameRepository extends ListCrudRepository<LocaleCoinName, LocaleCoinNameId> {
 
-    LocaleCoinName findById_Locale(String locale);
+    List<LocaleCoinName> findById_LocaleIs(String locale);
 }

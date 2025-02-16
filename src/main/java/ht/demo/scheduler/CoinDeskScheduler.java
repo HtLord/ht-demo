@@ -16,7 +16,7 @@ public class CoinDeskScheduler {
     private final CoinDeskService coinDeskService;
     private final CoinService coinService;
 
-    @Scheduled(fixedRate = 10000)
+    @Scheduled(fixedRate = 100000)
     public void syncWithCoinDesk() throws BadRequestWithErrorCodeException {
         var data =
             coinDeskService.fetch();

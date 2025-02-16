@@ -1,0 +1,9 @@
+spring:
+  jpa:
+    show-sql: true
+
+ht:
+  service:
+    data:
+      host: http://localhost:3000
+      endpoint: /

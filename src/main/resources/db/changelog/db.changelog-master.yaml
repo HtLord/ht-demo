@@ -73,3 +73,31 @@ databaseChangeLog:
             constraintName: pk_locale_coin_name
             tableName: locale_coin_name
             columnNames: locale, char_name
+  - changeSet:
+      id: attach-i18n-ht-1
+      author: weichen
+      changes:
+        - insert:
+            tableName: locale_coin_name
+            columns:
+              - column:
+                  name: locale
+                  value: 'zh_TW'
+              - column:
+                  name: char_name
+                  value: 'Bitcoin'
+              - column:
+                  name: name
+                  value: '比特幣'
+        - insert:
+            tableName: locale_coin_name
+            columns:
+              - column:
+                  name: locale
+                  value: 'zh_TW'
+              - column:
+                  name: char_name
+                  value: 'Dogecoin'
+              - column:
+                  name: name
+                  value: '狗狗幣'

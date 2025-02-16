@@ -3,6 +3,7 @@ package ht.demo.mapper;
 import ht.demo.dto.coin.CoinDto;
 import ht.demo.dto.coin.NeoCoinDeskDto;
 import ht.demo.dto.coin.desk.CoinDeskDto;
+import ht.demo.dto.locale.coin.CharName;
 import ht.demo.entity.Coin;
 import org.mapstruct.Context;
 import org.mapstruct.Mapper;
@@ -17,6 +18,7 @@ import java.time.Instant;
 import java.time.ZoneId;
 import java.time.ZoneOffset;
 import java.time.format.DateTimeFormatter;
+import java.util.Map;
 
 @Mapper(
     componentModel = MappingConstants.ComponentModel.SPRING,
@@ -52,5 +54,23 @@ public interface CoinMapper {
         source = "lastModifiedDate",
         qualifiedByName = "convertCoinDeskTimeToNeoCoinDeskTime"
     )
-    CoinDto toCoinDto(Coin source);
+    @Mapping(
+        target = "localeName",
+        source = "charName",
+        qualifiedByName = "attachCoinNameFromDict"
+    )
+    CoinDto toCoinDto(Coin source, @Context Map<CharName, String> nameDict);
+
+    @Named("attachCoinNameFromDict")
+    default String attachCoinNameFromDict(
+        String charName,
+        @Context Map<CharName, String> nameDict
+    ) {
+        return nameDict.getOrDefault(
+            CharName.builder()
+                .value(charName)
+                .build(),
+            ""
+        );
+    }
 }
