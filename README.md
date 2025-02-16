@@ -8,7 +8,7 @@ Features
 - i18n
   - Support reply data with variant locale from request 
 - Design Pattern
-  - X
+  - Support strategy design pattern
 - Containerize
   - Support docker build
 - Cryptology
