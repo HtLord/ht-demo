@@ -26,7 +26,7 @@ QA
 - Breakpoint not working while call rest template to execute resource in IntelliJ
   - Right click on breakpoint and select Thread in Suspend column
 
-Design Pattern
+Improvement Plan
 ---
-- Factory
-  - Direct usage by Lombok
+- Split liquibase by context for splitting mock data from database
+- Create seperated application to be able on different environment setups like dev, qa, staging, and prod.
