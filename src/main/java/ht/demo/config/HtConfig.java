@@ -10,6 +10,7 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 public class HtConfig {
 
     private Service service;
+    private Security security;
 
     @Getter
     @Setter
@@ -24,6 +25,13 @@ public class HtConfig {
 
         private String host;
         private String endpoint;
+    }
+
+    @Getter
+    @Setter
+    public static class Security {
+
+        private int logRounds;
     }
 
 }

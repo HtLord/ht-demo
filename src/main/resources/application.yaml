@@ -1,4 +1,7 @@
 spring:
+  security:
+    basic:
+      enable: false
   application:
     name: demo
   datasource:
@@ -25,3 +28,5 @@ ht:
     data:
       host: http://localhost:3000
       endpoint: /
+  security:
+    log-rounds: 10

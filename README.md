@@ -16,7 +16,7 @@ Features
 - Containerize
   - Support docker build
 - Cryptology
-  - X
+  - Support BCrypt hash and validation
 
 
 Preparing
