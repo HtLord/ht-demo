@@ -52,7 +52,7 @@ public class ITLocaleCoinNameResource {
     }
 
     @Test
-    void create() {
+    void testCreate() {
         var data =
             this.restTemplate
                 .exchange(
@@ -86,7 +86,7 @@ public class ITLocaleCoinNameResource {
     }
 
     @Test
-    void read() {
+    void testFetch() {
         Mockito.doReturn(
                 List.of(
                     LocaleCoinName.builder()
@@ -128,7 +128,7 @@ public class ITLocaleCoinNameResource {
     }
 
     @Test
-    void put() {
+    void testPut() {
         this.restTemplate
             .exchange(
                 "http://localhost:" + port + "/api/locale-coin-name",
@@ -179,7 +179,7 @@ public class ITLocaleCoinNameResource {
     }
 
     @Test
-    void delete() {
+    void testDelete() {
         this.restTemplate
             .exchange(
                 "http://localhost:" + port + "/api/locale-coin-name",

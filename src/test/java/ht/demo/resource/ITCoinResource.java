@@ -105,7 +105,7 @@ public class ITCoinResource {
     }
 
     @Test
-    void testRead() {
+    void testFetch() {
         var headers = new HttpHeaders();
         headers.add(
             HttpHeaders.ACCEPT_LANGUAGE,
