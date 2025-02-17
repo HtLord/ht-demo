@@ -2,6 +2,7 @@ package ht.demo.util.state;
 
 import org.apache.coyote.BadRequestException;
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -11,6 +12,11 @@ public class TestState {
 
     @Autowired
     FsmFactory factory;
+
+    @BeforeEach
+    void init() {
+        factory.reset();
+    }
 
     @Test
     void testInit() {
