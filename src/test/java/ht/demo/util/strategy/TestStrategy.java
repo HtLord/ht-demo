@@ -36,7 +36,7 @@ public class TestStrategy {
     @Test
     void testJapanStrategy() {
         Assertions.assertEquals(
-            "こんにちは!Weichen",
+            "オラオラオラオラオラオラ!Weichenオラ!",
             greetingStrategyDispatcher.sayHello(
                 From.Japan,
                 "Weichen"
