@@ -13,6 +13,8 @@ jobs:
           with:
             java-version: '17'
             distribution: 'corretto'
+        - name: Test
+          run: ./mvnw test
         - name: Build-Jar
           run: ./mvnw -Dmaven.test.skip=true package
         - name: Containerize
